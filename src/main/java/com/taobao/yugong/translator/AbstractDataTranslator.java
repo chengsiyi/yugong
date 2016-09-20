@@ -3,6 +3,7 @@ package com.taobao.yugong.translator;
 import java.util.List;
 
 import com.google.common.collect.Lists;
+import com.taobao.yugong.common.db.meta.ColumnValue;
 import com.taobao.yugong.common.model.record.Record;
 import com.taobao.yugong.translator.TableTranslators.TableTranslator;
 
@@ -65,4 +66,10 @@ public class AbstractDataTranslator implements DataTranslator {
         this.translator = translator;
     }
 
+    public static void alias(Record record,String srcColumn, String targetColumn){
+        ColumnValue columnValue = record.getColumnByName(srcColumn);
+        if (columnValue != null){
+            columnValue.getColumn().setName(targetColumn);
+        }
+    }
 }
