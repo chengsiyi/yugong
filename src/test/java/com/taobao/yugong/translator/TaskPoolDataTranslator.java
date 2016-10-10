@@ -26,33 +26,28 @@ import java.util.Date;
  * @version V1.0
  * @since 2016-09-19 16:13
  */
-public class StaffOperateLogDataTranslator extends AbstractDataTranslator implements DataTranslator {
+public class TaskPoolDataTranslator extends AbstractDataTranslator implements DataTranslator {
     public static Integer i = 0;
     public boolean translator (Record record){
         //字段不同
-        alias(record,"COL01","operate_log_uuid");
-        alias(record,"OPERATETYPEID","operate_type_id");
         alias(record,"USERUUID","user_id");
+        alias(record,"USERREGPHONE","user_regphone");
         alias(record,"CALLTYPE","call_type");
         alias(record,"CALLPHONE","call_phone");
-        alias(record,"CALLID","call_id");
-        alias(record,"OPERATETYPECONTENT","operate_type_content");
-        alias(record,"EXPERTNAME01","expert_name");
-        alias(record,"REMARK","remark");
+        alias(record,"CALLLOG","call_log");
         alias(record,"CREATEDSTAFFID","staff_created");
         alias(record,"CREATEDTIME","gmt_created");
-        alias(record,"MODIFIEDTIME","gmt_modified");
+        alias(record,"TASKUUID","task_uuid");
         //删除多余的字段
-        record.removeColumnByName("OPERATELOGUUID");
-        record.removeColumnByName("EXPERTNAME02");
-        record.removeColumnByName("COL02");
-        record.removeColumnByName("COL03");
-        record.removeColumnByName("COL04");
-        record.removeColumnByName("COL05");
-        //增加了字段
+        record.removeColumnByName("CALLLOGUUID");
+        record.removeColumnByName("CALLID");
+        //增加了gmt_created和gmt_modified字段
         ColumnMeta id = new ColumnMeta("id", Types.INTEGER);
-        ColumnValue gmtCreatedColumn = new ColumnValue(id,i++,false);
-        record.addColumn(gmtCreatedColumn);
+        ColumnValue idColumn = new ColumnValue(id,i++,false);
+        record.addColumn(idColumn);
+        ColumnMeta gmtModified = new ColumnMeta("gmt_modified", Types.TIMESTAMP);
+        ColumnValue gmtModifiedColumn = new ColumnValue(gmtModified, new Date(),false);
+        record.addColumn(gmtModifiedColumn);
         return super.translator(record);
     }
 }
