@@ -30,14 +30,36 @@ public class TaskPoolDataTranslator extends AbstractDataTranslator implements Da
     public static Integer i = 0;
     public boolean translator (Record record){
         //字段不同
-        alias(record,"USERUUID","user_id");
-        alias(record,"USERREGPHONE","user_regphone");
-        alias(record,"CALLTYPE","call_type");
-        alias(record,"CALLPHONE","call_phone");
-        alias(record,"CALLLOG","call_log");
-        alias(record,"CREATEDSTAFFID","staff_created");
-        alias(record,"CREATEDTIME","gmt_created");
-        alias(record,"TASKUUID","task_uuid");
+        alias(record,"USERUUID","task_uuid");
+        alias(record,"USERREGPHONE","task_type");
+        alias(record,"CALLTYPE","task_group_id");
+        alias(record,"CALLPHONE","order_id");
+        alias(record,"CALLLOG","hospital_uuid");
+        alias(record,"CREATEDSTAFFID","hospital_shortname");
+        alias(record,"CREATEDTIME","hospdept_uuid");
+        alias(record,"TASKUUID","expert_name");
+        alias(record,"TASKUUID","user_uuid");
+        alias(record,"TASKUUID","user_regphone");
+        alias(record,"TASKUUID","user_name");
+        alias(record,"TASKUUID","outdial_count");
+        alias(record,"TASKUUID","handle_staff");
+        alias(record,"TASKUUID","staff_created");
+        alias(record,"TASKUUID","gmt_created");
+        alias(record,"TASKUUID","completed_time");
+        alias(record,"TASKUUID","task_state_time");
+        alias(record,"TASKUUID","task_state");
+        alias(record,"TASKUUID","expert_arrange_uuid");
+        alias(record,"TASKUUID","clinical_date");
+        alias(record,"TASKUUID","reserve_timerange");
+        alias(record,"TASKUUID","change_reason");
+        alias(record,"TASKUUID","order_created_time");
+        alias(record,"TASKUUID","id_no");
+        alias(record,"TASKUUID","order_state");
+        alias(record,"TASKUUID","area_id");
+        alias(record,"TASKUUID","inform_state");
+        alias(record,"TASKUUID","inform_result");
+        alias(record,"TASKUUID","sms_seq");
+        alias(record,"TASKUUID","gmt_modifird");
         //删除多余的字段
         record.removeColumnByName("CALLLOGUUID");
         record.removeColumnByName("CALLID");
